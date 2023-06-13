@@ -39,15 +39,18 @@ Python script can be run manually on windows, installer will only work on linux 
 
 5. Once the installation is complete, the wallpaper changer will start automatically. It will update your wallpaper with Bing's daily image each day.
 
-## Note: Script scheduling is a work in progress. 
+## ~~Note: Script scheduling is a work in progress.~~
 
-Currently, the script creates a desktop entry for running the Wallpaper Changer manually. Any help regarding script scheduling would be greatly appreciated.
-
-I have tried to implement a systemctl service and a cron job for scheduling the task but in both cases the script is unable to access the display server. I also tried exporting the display server `export DISPLAY=:0` but that didn't work atleast on my system.
+~~I have tried to implement a systemctl service and a cron job for scheduling the task but in both cases the script is unable to access the display server. I also tried exporting the display server `export DISPLAY=:0` but that didn't work atleast on my system.~~
 
 Therefore currently i am going with a desktop entry that will show the script as an "app" in the applications menu which can be launched to change the wallpaper.
 ![Screenshot from 2023-06-13 11-42-07](https://github.com/anantdark/bing-wallpaper/assets/66427020/1c639d5d-c8ec-44f2-bb2d-c8cb6f12b0c5)
 
+## Update:
+
+The solution was so simple I don't know how i missed it, I just had to create an entry in startup applications for it to run the script on startup.
+
+## TL;DR: Scheduling is working now.
 
 
 ## Uninstallation
