@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "AUTHOR: ANANT"
+
 # Function to check internet connectivity
 check_internet() {
     if ! ping -c 1 google.com &> /dev/null; then
