@@ -46,6 +46,9 @@ Currently, the script creates a desktop entry for running the Wallpaper Changer 
 I have tried to implement a systemctl service and a cron job for scheduling the task but in both cases the script is unable to access the display server. I also tried exporting the display server `export DISPLAY=:0` but that didn't work atleast on my system.
 
 Therefore currently i am going with a desktop entry that will show the script as an "app" in the applications menu which can be launched to change the wallpaper.
+![Screenshot from 2023-06-13 11-42-07](https://github.com/anantdark/bing-wallpaper/assets/66427020/1c639d5d-c8ec-44f2-bb2d-c8cb6f12b0c5)
+
+
 
 ## Uninstallation
 
