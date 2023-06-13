@@ -1,30 +1,37 @@
-# My Wallpaper Changer
+# Bing Wallpaper Changer
 
-My Wallpaper Changer is a Python script that automatically updates your wallpaper daily using Bing's daily image.
+![wall3](https://github.com/anantdark/bing-wallpaper/assets/66427020/db356646-25a9-4fc0-8a29-23533aceac23)
+
+
+Bing Wallpaper Changer is a Python script that automatically updates your wallpaper daily using Bing's daily image.
+
 
 ## Compatibility
 
 - Operating System: Linux (tested on Debian-based systems)
 - Python: 3.x
 
-Please note that this script has been tested on Debian-based Linux systems.
+Python script can be run manually on windows, installer will only work on linux based systems.
 
 ## Installation
 
 1. Clone or download this repository to your local machine.
+    ```commandline
+    git clone https://github.com/anantdark/bing-wallpaper.git
+    ```
 
 2. Open a terminal and navigate to the downloaded directory:
     ```commandline
-   cd /path/to/wallpaperchanger
+   cd /path/to/bing-wallpaper
    ```
 3. Make the script executable by running the following command:
-   ```
-   chmod +x wallpaperchanger
+   ```commandline
+   chmod +x install.sh
    ```
 
 4. Run the following command to install the wallpaper changer:
     ```commandline
-    sudo ./install.sh   
+    sudo ./install.sh --install  
     ```
 
     This will prompt you for sudo access and install the necessary files and services.
@@ -43,13 +50,13 @@ Therefore currently i am going with a desktop entry that will show the script as
 ## Uninstallation
 
 1. Open a terminal and navigate to the downloaded directory:
-    ```
+    ```commandline
    cd /path/to/wallpaperchanger
    ```
 
 2. Run the following command to uninstall the wallpaper changer:
 
-    ```
+    ```commandline
    sudo ./install.sh --uninstall
    ```
 
@@ -67,10 +74,11 @@ The wallpaper changer requires the following dependencies to run:
 
 - Python 3
 - BeautifulSoup (`pip install beautifulsoup4`)
+- PyGObject (`pip install PyGObject`)
 
 ## License
 
-This project is licensed under the [GPL License](LICENSE).
+This project is licensed under the [GPL License](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text).
 
 ## Contributing
 
