@@ -23,13 +23,13 @@ def set_wallpaper(filepath):
 
 
 def change_wallpaper(day):
-    ajax_url = 'http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=8'
-    scriptdir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(scriptdir, 'bing_image.jpg')
-
-    # Try updating the wallpaper until successful
     while True:
         try:
+            ajax_url = 'http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=8'
+            scriptdir = os.path.dirname(os.path.abspath(__file__))
+            filepath = os.path.join(scriptdir, 'bing_image.jpg')
+
+            # Try updating the wallpaper until successful
             resp = urllib.request.urlopen(ajax_url)
             if resp.status == 200:
                 xml_data = BeautifulSoup(resp, features='xml')
@@ -42,7 +42,7 @@ def change_wallpaper(day):
             break  # Exit the loop if wallpaper is updated successfully
         except:
             print("Error updating wallpaper. Retrying...")
-            time.sleep(5)  # Wait for 60 seconds before retrying
+            time.sleep(60)  # Wait for 60 seconds before retrying
 
 
 def write_current_date():
