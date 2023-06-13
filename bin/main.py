@@ -1,13 +1,13 @@
-from gi.repository import Gio
+# from gi.repository import Gio
 import urllib.request
 from bs4 import BeautifulSoup
 import os
-import gi
+# import gi
 import datetime
 import subprocess
 import time
 import random
-gi.require_version('Gio', '2.0')
+# gi.require_version('Gio', '2.0')
 
 ###################### TRYING TO IMPLEMENT SCHEDULING########################
 # subprocess.run(["xhost", "+SI:localuser:{}".format(os.getlogin())])
@@ -15,12 +15,15 @@ gi.require_version('Gio', '2.0')
 
 #############################################################################
 
-
 def set_wallpaper(filepath):
-    gsettings = Gio.Settings.new('org.gnome.desktop.background')
-    gsettings.set_string('picture-uri', f'file://{filepath}')
-    gsettings.apply()
-
+    try:
+        command = ['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri', f'file://{filepath}']
+        subprocess.run(command)
+    except Exception as e:
+        print(e)
+#         gsettings = Gio.Settings.new('org.gnome.desktop.background')
+#         gsettings.set_string('picture-uri', f'file://{filepath}')
+#         gsettings.apply()
 
 def change_wallpaper(day):
     while True:
