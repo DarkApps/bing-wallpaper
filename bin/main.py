@@ -18,7 +18,9 @@ import random
 def set_wallpaper(filepath):
     try:
         command = ['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri', f'file://{filepath}']
+        command1 = ['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri', f'file://{filepath}']
         subprocess.run(command)
+        subprocess.run(command1)
     except Exception as e:
         print(e)
 #         gsettings = Gio.Settings.new('org.gnome.desktop.background')
