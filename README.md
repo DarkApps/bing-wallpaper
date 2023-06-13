@@ -93,6 +93,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ## Credits
 
 - The Bing daily image is used under the terms of the [Bing Image Archive API](https://docs.microsoft.com/en-us/bing/search-apis/bing-image-search/reference/queryexpansion).
+- The application icon is part of icon pack by [Vinceliuice](https://github.com/vinceliuice)
 - The BeautifulSoup library is used for parsing HTML content in Python.
 - Project is inspired(not copied) by similar projects by [Utkarsh](https://github.com/utkarshgpta/bing-desktop-wallpaper-changer) and [neffo](https://github.com/neffo/bing-wallpaper-gnome-extension)
 
