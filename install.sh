@@ -43,8 +43,8 @@ USERNAME=$(logname)
 
 # Function to install the wallpaper changer
 install() {
-    # Create the necessary directories
     (
+    echo ""
     # Copy the Folder
     cp -r bin/ /home/$USERNAME/.local/share/wallpaperchanger
 
@@ -66,7 +66,7 @@ install() {
     read -s -N 1 -p "Do you want to install the required packages? [y/n]: " install_requirements
     echo ""
 
-    (if [ "$install_requirements" = "n" ] || [ "$install_requirements" = "N" ]; then
+    (   if [ "$install_requirements" = "n" ] || [ "$install_requirements" = "N" ]; then
         echo "Skipping installation of requirements."
         sleep 1
     else
