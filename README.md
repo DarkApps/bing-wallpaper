@@ -20,13 +20,13 @@ Python script can be run manually on windows, installer will only work on linux 
     git clone https://github.com/anantdark/bing-wallpaper.git
     ```
 
-2. Open a terminal and navigate to the downloaded directory:
+2. Navigate to the downloaded directory:
     ```commandline
-   cd /path/to/bing-wallpaper
+   cd bing-wallpaper
    ```
 3. Make the script executable by running the following command:
    ```commandline
-   chmod +x install.sh
+   sudo chmod +x install.sh
    ```
 
 4. Run the following command to install the wallpaper changer:
