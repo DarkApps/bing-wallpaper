@@ -6,7 +6,18 @@ animation() {
     echo "|-+-| | + | |-+-| | + |   +   "
     echo "|   | |  \| |   | |  \|   |   "
 
-sleep 2
+# sleep 2
+}
+echo_rainbow(){
+    colors=("31" "32" "33" "34" "35" "36" "90" "91" "92" "93" "94" "95")
+    for ((i = 0; i <= 12; i++)); do
+        color_index=$((i % ${#colors[@]}))
+        echo -e "\e[${colors[color_index]}m" #\e[0m
+        animation
+        sleep 0.25
+        clear
+    echo -e "\e[0m"
+    done
 }
 
 progress() {
@@ -36,7 +47,6 @@ progress_bar() {
     done
 
     echo -ne "\b"
-    echo "JOB completed."
 }
 
 USERNAME=$(logname)
@@ -53,7 +63,7 @@ install() {
 
     sleep 1
     # Set the ownership and permissions
-    echo "setting file ownsership"
+    echo "setting file ownership"
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.local/share/wallpaperchanger
     chmod +x /home/$USERNAME/.local/share/wallpaperchanger/main.py
     echo "done")&
@@ -103,18 +113,23 @@ install() {
         chmod +x "$desktop_entry"
         chown $USERNAME:$USERNAME "$desktop_entry"
         sleep 1
-        echo "Wallpaper Changer scheduled, Enjoy Fresh Wallpapers"
+        echo -e "\e[32mWallpaper Changer scheduled, Enjoy Fresh Wallpapers.\e[0m"
         sleep 2
     fi)&
     progress_bar $!
     wait
     progress 1
+    clear
+    echo -e "\e[36mUse the wallpaper changer icon to change wallpaper anytime. Find the icon in applications menu.\e[0m"
+    echo -e "\e[33mIf you want notifications install libnotify module, run 'sudo apt install libnotify-bin' for debian based OS.\e[0m"
+    read -n 1 -p "Press any key to exit!" key
+    clear
 }
 
 # Function to uninstall the files and cron job
 uninstall() {
     (echo ""
-    echo "performing uninstallation"
+    echo -e "\e[31mPerforming uninstallation"
     # Remove the installed files
     if [ -d "/home/$USERNAME/.local/share/wallpaperchanger" ]; then
         rm -rf "/home/$USERNAME/.local/share/wallpaperchanger"
@@ -145,34 +160,35 @@ uninstall() {
         sleep 1
     fi
 
-    echo "Uninstallation completed successfully.")&
+    echo -e "\e[32mUninstallation completed successfully.\e[0m")&
     progress_bar $!
+    progress 3
     wait
-    progress 1
+    clear
 }
 
 # Main script
 
 # Check if the script is run with root privileges
 if [ "$EUID" -ne 0 ]; then
-    echo "Please run the script with root privileges."
+    echo -e "\e[31mPlease run the script with root privileges.\e[0m"
     exit 1
 fi
 
 # Check the command-line argument
 case $1 in
     --install)
-        animation
+        echo_rainbow
         install
         ;;
     --uninstall)
-        animation
+        echo_rainbow
         uninstall
         ;;
     *)
-        echo "Invalid option. Usage: ./install.sh --install or ./install.sh --uninstall"
+        echo -e "\e[31mInvalid option. Usage: ./install.sh --install or ./install.sh --uninstall\e[0m"
         exit 1
         ;;
 esac
 
-echo "AUTHOR: ANANT"
+# echo "AUTHOR: ANANT"
