@@ -7,7 +7,8 @@ import datetime
 import subprocess
 import time
 import random
-gi.require_version('Gio', '2.0')
+
+gi.require_version("Gio", "2.0")
 
 ###################### TRYING TO IMPLEMENT SCHEDULING########################
 # subprocess.run(["xhost", "+SI:localuser:{}".format(os.getlogin())])
@@ -15,58 +16,82 @@ gi.require_version('Gio', '2.0')
 
 #############################################################################
 
+
 def set_wallpaper(filepath):
     try:
-        command = ['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri', f'file://{filepath}']
-        command1 = ['gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri-dark', f'file://{filepath}']
+        command = [
+            "gsettings",
+            "set",
+            "org.gnome.desktop.background",
+            "picture-uri",
+            f"file://{filepath}",
+        ]
+        command1 = [
+            "gsettings",
+            "set",
+            "org.gnome.desktop.background",
+            "picture-uri-dark",
+            f"file://{filepath}",
+        ]
         subprocess.run(command)
         subprocess.run(command1)
     except Exception as e:
         print(e)
-        gsettings = Gio.Settings.new('org.gnome.desktop.background')
-        gsettings.set_string('picture-uri', f'file://{filepath}')
+        gsettings = Gio.Settings.new("org.gnome.desktop.background")
+        gsettings.set_string("picture-uri", f"file://{filepath}")
         gsettings.apply()
+
 
 def change_wallpaper(day):
     while True:
         try:
-            ajax_url = 'http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=8'
+            ajax_url = "http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=8"
             scriptdir = os.path.dirname(os.path.abspath(__file__))
-            filepath = os.path.join(scriptdir, 'bing_image.jpg')
+            filepath = os.path.join(scriptdir, "bing_image.jpg")
 
             # Try updating the wallpaper until successful
             resp = urllib.request.urlopen(ajax_url)
             if resp.status == 200:
-                xml_data = BeautifulSoup(resp, features='xml')
-                urls = xml_data.findAll('url')
+                xml_data = BeautifulSoup(resp, features="xml")
+                urls = xml_data.findAll("url")
                 url = urls[day].string
-            download_link = f'https://bing.com{url}'
+            download_link = f"https://bing.com{url}"
             urllib.request.urlretrieve(download_link, filepath)
             set_wallpaper(filepath)
-            print('Wallpaper Set Successfully.')
+            print("Wallpaper Set Successfully.")
+            notify(xml_data=xml_data, day=day)
             break  # Exit the loop if wallpaper is updated successfully
         except:
             print("Error updating wallpaper. Retrying...")
             time.sleep(60)  # Wait for 60 seconds before retrying
 
 
+def notify(xml_data, day):
+    headlines = xml_data.findAll("headline")
+    headline = headlines[day].string
+    infos = xml_data.findAll("copyright")
+    info = infos[day].string
+    info = info[: info.find("(")]
+    subprocess.run(["notify-send", f"{headline}", f"{info}"])
+
+
 def write_current_date():
     scriptdir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(scriptdir, 'last_run.txt')
+    filepath = os.path.join(scriptdir, "last_run.txt")
     current_date = datetime.date.today().isoformat()
 
-    with open(filepath, 'w') as file:
+    with open(filepath, "w") as file:
         file.write(current_date)
 
 
 def read_last_run_date():
     scriptdir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(scriptdir, 'last_run.txt')
+    filepath = os.path.join(scriptdir, "last_run.txt")
 
     if not os.path.exists(filepath):
         return None
 
-    with open(filepath, 'r') as file:
+    with open(filepath, "r") as file:
         last_run_date = file.read().strip()
 
     return last_run_date
