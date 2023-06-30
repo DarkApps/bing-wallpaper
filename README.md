@@ -17,7 +17,7 @@ Python script can be run manually on windows, installer will only work on linux 
 
 1. Clone or download this repository to your local machine.
     ```commandline
-    git clone https://github.com/anantdark/bing-wallpaper.git
+    git clone https://github.com/dark-apps/bing-wallpaper.git
     ```
 
 2. Navigate to the downloaded directory:
@@ -97,6 +97,10 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 - The BeautifulSoup library is used for parsing HTML content in Python.
 - Project is inspired(not copied) by similar projects by [Utkarsh](https://github.com/utkarshgpta/bing-desktop-wallpaper-changer) and [neffo](https://github.com/neffo/bing-wallpaper-gnome-extension)
 
-## Author:
-Project written by Anant.
 
+## Author:
+Project written by [anantdark](https://github.com/anantdark).
+
+<p align="center"><a href="https://github.com/dark-apps/bing-wallpaper/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=dark-apps/bing-wallpaper" />
+</a></p>
